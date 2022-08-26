@@ -1,0 +1,124 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id                String      @id @default(cuid())
+  name              String?
+  email             String?     @unique
+  password          String?
+  imageUrn          String?
+  graphPlottingData GraphData[]
+}
+
+model User {
+  id               String         @id @default(cuid())
+  name             String?
+  mobileNum        String?        @unique
+  email            String?        @unique
+  password         String?
+  address          String?
+  district         String?
+  state            String?
+  lat              Float?
+  long             Float?
+  orders           Orders[]
+  orderHistory     OrderHistory[]
+  imageUrn         String?
+  graphPlotingData GraphData[]
+}
+
+model Orders {
+  id         String   @id @default(cuid())
+  user       User     @relation(fields: [id], references: [id])
+  providerID String   @default("")
+  // provider Provider
+  items      String[]
+  prices     String[]
+  history    Boolean  @default(false)
+}
+
+model OrderHistory {
+  id    String   @id @default(cuid())
+  user  User     @relation(fields: [uID], references: [id])
+  uID   String
+  pID   String
+  items String[]
+  total String
+}
+
+// model Items {
+//   id    String @id @default(cuid())
+//   order Orders @relation(fields: [id], references: [id])
+//   item  String
+//   price Int
+// }
+
+model Provider {
+  id            String                 @id @default(cuid())
+  name          String?
+  mobileNum     String?                @unique
+  email         String?                @unique
+  password      String?
+  address       String?
+  district      String?
+  state         String?
+  lat           Float?
+  long          Float?
+  pH            String[]
+  rate          String[]
+  date          String[]
+  providerOrder ProviderOrder[]
+  inStockItems  ProviderInStockItems[]
+  // orderItems    String[]
+  // orderPrices   String[]
+  // quantities    String[]
+  // c_id          String
+  // accepted Boolean? @default(false)
+  // history  Boolean? @default(false)
+  // live_order ProviderLiveOrder[]
+  stars         Int                    @default(0)
+}
+
+model ProviderInStockItems {
+  id       String   @id @default(cuid())
+  provider Provider @relation(fields: [id], references: [id])
+  items    String[]
+  prices   String[]
+}
+
+model ProviderOrder {
+  id         String   @id @default(cuid())
+  provider   Provider @relation(fields: [providerID], references: [id])
+  providerID String
+  userID     String
+  accepted   Boolean? @default(false)
+  history    Boolean? @default(false)
+  items      String[]
+  prices     String[]
+  quatities  String[]
+  total      Int      @default(0)
+  // user_order Orders[]
+}
+
+model GraphData {
+  id         String @id @default(cuid())
+  user       User   @relation(fields: [userID], references: [id])
+  admin      Admin  @relation(fields: [adminID], references: [id])
+  adminID    String
+  userID     String
+  providerID String
+  district   String
+  state      String
+  dataPoint  Int
+  dataPintX  Int
+  dataPointY Int
+}

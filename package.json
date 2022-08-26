@@ -1,0 +1,51 @@
+{
+  "name": "milkyway-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon --exec ts-node src/server.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rayzon3/milkyway-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rayzon3/milkyway-backend/issues"
+  },
+  "homepage": "https://github.com/Rayzon3/milkyway-backend#readme",
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/cookie": "^0.5.1",
+    "@types/cookie-parser": "^1.4.3",
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "@types/http-errors": "^1.8.2",
+    "@types/jsonwebtoken": "^8.5.8",
+    "@types/morgan": "^1.9.3",
+    "@types/multer": "^1.4.7",
+    "@types/node": "^18.6.5",
+    "@types/nodemon": "^1.19.2",
+    "prisma": "^4.2.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "@prisma/client": "^4.2.0",
+    "bcryptjs": "^2.4.3",
+    "cookie": "^0.5.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "http-errors": "^2.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^2.0.19"
+  }
+}
